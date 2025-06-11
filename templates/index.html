@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Review Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Product Review Generator</h1>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <form action="/" method="POST">
+            <label for="productUrl">Product URL (optional):</label>
+            <input type="text" id="productUrl" name="productUrl" placeholder="Enter product URL, e.g., https://desertcart.in/products/506978174">
+            
+            <p><strong>-- Or --</strong></p>
+            
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" placeholder="Enter product name">
+            
+            <label for="features">Features (comma-separated):</label>
+            <textarea id="features" name="features" placeholder="e.g., long battery life, high-resolution camera"></textarea>
+            
+            <label for="price">Price (optional):</label>
+            <input type="text" id="price" name="price" placeholder="Enter product price, e.g., ₹10,999">
+            
+            <label for="tone">Tone:</label>
+            <select id="tone" name="tone">
+                <option value="neutral">Neutral</option>
+                <option value="formal">Formal</option>
+                <option value="casual">Casual</option>
+                <option value="enthusiastic">Enthusiastic</option>
+                <option value="technical">Technical</option>
+            </select>
+            
+            <label for="language">Language (e.g., en, es, fr):</label>
+            <input type="text" id="language" name="language" value="en">
+            
+            <button type="submit">Generate Review</button>
+        </form>
+        
+        {% if review %}
+            <div class="result">
+                <h2>Generated Review</h2>
+                {% if review.productUrl %}
+                    <p><strong>Product URL:</strong> <a href="{{ review.productUrl }}" target="_blank">{{ review.productUrl }}</a></p>
+                {% endif %}
+                <p><strong>Product Name:</strong> {{ review.productName }}</p>
+                {% if review.price %}
+                    <p><strong>Price:</strong> {{ review.price }}</p>
+                {% endif %}
+                <p><strong>Review:</strong> {{ review.generatedReview }}</p>
+                <p><strong>Summary:</strong> {{ review.summary }}</p>
+                <p><strong>Rating:</strong> {{ review.rating }}/5</p>
+                <p><strong>Tone:</strong> {{ review.tone }}</p>
+                <p><strong>Language:</strong> {{ review.language }}</p>
+            </div>
+        {% endif %}
+        
+        {% if reviews %}
+            <hr>
+            <h2>All Reviews</h2>
+            {% for rev in reviews %}
+                <div class="review-item">
+                    {% if rev.productUrl %}
+                        <p><strong>Product URL:</strong> <a href="{{ rev.productUrl }}" target="_blank">{{ rev.productUrl }}</a></p>
+                    {% endif %}
+                    <p><strong>{{ rev.productName }}</strong></p>
+                    {% if rev.price %}
+                        <p><strong>Price:</strong> {{ rev.price }}</p>
+                    {% endif %}
+                    <p>{{ rev.generatedReview }}</p>
+                    <p>Rating: {{ rev.rating }}/5</p>
+                    <p>Summary: {{ rev.summary }}</p>
+                    <p>Tone: {{ rev.tone }} | Language: {{ rev.language }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
