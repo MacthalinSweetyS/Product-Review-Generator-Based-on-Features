@@ -1,6 +1,5 @@
 ## Product Review GeneratorBased on Features
 
-```markdown
 ## Product Review Generator
 
 Product Review Generator is a minimal Python web application built with Flask that automatically scrapes product details from a provided URL and generates a custom review. The review includes product features along with a value-for-money comment based on the product’s price. If the automatic extraction fails, you have the option to input product details manually.
