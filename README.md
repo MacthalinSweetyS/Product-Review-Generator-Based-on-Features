@@ -1,25 +1,25 @@
-##Product Review GeneratorBased on Features
+## Product Review GeneratorBased on Features
 
 ```markdown
-# Product Review Generator
+## Product Review Generator
 
 Product Review Generator is a minimal Python web application built with Flask that automatically scrapes product details from a provided URL and generates a custom review. The review includes product features along with a value-for-money comment based on the product’s price. If the automatic extraction fails, you have the option to input product details manually.
 
 ## Features
 
-- **Automated Extraction:**  
+- Automated Extraction:  
   The app uses CloudScraper to bypass basic anti-scraping protection and BeautifulSoup to parse HTML. It supports extracting product title, features (e.g., bullet points), and price from supported websites like Amazon and Desertcart.
 
-- **Custom Review Generation:**  
+- Custom Review Generation: 
   Based on the extracted or manually entered data, the app generates a review. If a price is provided, it analyzes the numeric value and adds a comment on whether the product is very affordable, offers great value, or is slightly expensive but justified by quality.
 
-- **Multiple Tones:**  
+- Multiple Tones: 
   Users can choose among several review tones—Neutral, Formal, Casual, Enthusiastic, or Technical—to match the style of the review.
 
-- **Fallback Input:**  
+- Fallback Input:  
   When extraction fails due to website restrictions or layout differences, you can manually enter the product name, features, and price.
 
-- **Simple Web Interface:**  
+- Simple Web Interface:  
   The application provides a straightforward form where you can either enter a product URL or fill in details manually, view the generated review, and see a list of all created reviews.
 
 ## Requirements
